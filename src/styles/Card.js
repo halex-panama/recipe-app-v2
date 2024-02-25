@@ -5,17 +5,18 @@ export const Gradient = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
-  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7));
 `;
 
 export const Card = styled.div`
-  border-radius: 2rem;
+  border-radius: 1rem;
   overflow: hidden;
   min-height: 20rem;
   position: relative;
+  transition: 0.2s;
 
   img {
-    border-radius: 2rem;
+    border-radius: 1rem;
     width: 100%;
     height: 100%;
     position: absolute;
@@ -32,10 +33,19 @@ export const Card = styled.div`
     color: #fff;
     width: 100%;
     text-align: center;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     height: 40%;
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  &:hover {
+    transform: scale(1.025);
+    border-radius: 0;
+
+    img {
+      border-radius: 0;
+    }
   }
 `;

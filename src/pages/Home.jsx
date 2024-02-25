@@ -1,9 +1,12 @@
-import React from "react";
 import { useHomeFetch } from "../hooks/useHomeFetch";
 import Slider from "../components/Slider";
+import Spinner from "../components/Spinner";
 
 const Home = () => {
   const { state, loading, error } = useHomeFetch();
+
+  if (loading) return <Spinner />;
+  if (error) return <div>Something went wrong.. Please try again</div>;
 
   return (
     <>

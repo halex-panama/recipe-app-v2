@@ -1,13 +1,13 @@
 import { Link, useParams } from "react-router-dom";
-import { useCuisineFetch } from "../hooks/useCuisineFetch";
+import { useSearchFetch } from "../hooks/useSearchFetch";
 import { Grid } from "../styles/Grid";
 import { Card, Gradient } from "../styles/Card";
 import Spinner from "../components/Spinner";
 
-const Cuisine = () => {
-  const { cuisineName } = useParams();
+const Searched = () => {
+  const { search } = useParams();
 
-  const { state, loading, error } = useCuisineFetch(cuisineName);
+  const { state, loading, error } = useSearchFetch(search);
 
   if (loading) return <Spinner />;
   if (error) return <div>Something went wrong.. Please try again</div>;
@@ -33,4 +33,4 @@ const Cuisine = () => {
   );
 };
 
-export default Cuisine;
+export default Searched;

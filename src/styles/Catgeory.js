@@ -30,8 +30,14 @@ export const Slink = styled(NavLink)`
     font-size: 1.5rem;
   }
 
+  @media screen and (max-width: 768px) {
+    width: 4.5rem;
+    height: 4.5rem;
+    margin: 0;
+  }
+
   &.active {
-    background: linear-gradient(to right, #f27121), #e94057;
+    background: linear-gradient(to right, #f27121, #e94057);
 
     svg {
       color: #fff;
