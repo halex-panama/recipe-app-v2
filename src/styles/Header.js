@@ -1,19 +1,11 @@
 import styled from "styled-components";
 
-export const Wrapper = styled.nav`
+export const LogoImg = styled.img`
+  height: 4.5rem;
   margin: 2rem 0;
 
-  div {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  a {
-    text-decoration: none;
-  }
-
-  svg {
-    font-size: 2rem;
+  @media screen and (max-width: 768px) {
+    height: 3rem;
+    margin: 1rem 0;
   }
 `;

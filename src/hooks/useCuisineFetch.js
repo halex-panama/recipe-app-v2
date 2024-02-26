@@ -34,7 +34,7 @@ export const useCuisineFetch = (cuisineName) => {
       return;
     }
 
-    fetchCuisine();
+    fetchCuisine(cuisineName);
   }, [cuisineName]);
 
   useEffect(() => {

@@ -1,17 +1,12 @@
 import { Link } from "react-router-dom";
-import { Wrapper } from "../styles/Header";
-import { GiKnifeFork } from "react-icons/gi";
+import { LogoImg } from "../styles/Header";
+import Logo from "../image/logo.svg";
 
 const Header = () => {
   return (
-    <Wrapper>
-      <Link to="/">
-        <div>
-          <GiKnifeFork />
-          <h1>Recipe App</h1>
-        </div>
-      </Link>
-    </Wrapper>
+    <Link to="/">
+      <LogoImg src={Logo} />
+    </Link>
   );
 };
 

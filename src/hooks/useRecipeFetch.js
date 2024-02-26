@@ -34,7 +34,7 @@ export const useRecipeFetch = (recipeId) => {
       return;
     }
 
-    fetchRecipeInfo();
+    fetchRecipeInfo(recipeId);
   }, [recipeId]);
 
   useEffect(() => {
