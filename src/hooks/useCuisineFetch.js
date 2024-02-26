@@ -9,7 +9,7 @@ export const useCuisineFetch = (cuisineName) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
-  const fetchCuisine = async () => {
+  const fetchCuisine = async (cuisineName) => {
     try {
       setLoading(true);
       setError(false);
@@ -39,7 +39,7 @@ export const useCuisineFetch = (cuisineName) => {
 
   useEffect(() => {
     sessionStorage.setItem(cuisineName, JSON.stringify(state));
-  }, [state]);
+  }, [state, cuisineName]);
 
   return { state, loading, error };
 };

@@ -7,7 +7,7 @@ export const useSearchFetch = (searchTerm) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
-  const fetchSearchRecipe = async () => {
+  const fetchSearchRecipe = async (searchTerm) => {
     try {
       setLoading(true);
       setError(false);
@@ -24,7 +24,7 @@ export const useSearchFetch = (searchTerm) => {
   };
 
   useEffect(() => {
-    fetchSearchRecipe();
+    fetchSearchRecipe(searchTerm);
   }, [searchTerm]);
 
   return { state, loading, error };

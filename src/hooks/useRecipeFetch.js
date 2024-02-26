@@ -9,7 +9,7 @@ export const useRecipeFetch = (recipeId) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
-  const fetchRecipeInfo = async () => {
+  const fetchRecipeInfo = async (recipeId) => {
     try {
       setLoading(true);
       setError(false);
