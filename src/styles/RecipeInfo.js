@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const InfoWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 2.5rem;
+  gap: 4rem;
   margin: 5rem 0;
 
   .active {
@@ -33,14 +33,14 @@ export const ButtonInfo = styled.button`
 `;
 
 export const Info = styled.div`
-  padding: 0 1.5rem;
-  gap: 1.25rem;
+  gap: 1rem;
   display: flex;
   align-items: center;
   flex-direction: column;
-  word-wrap: normal;
+
   width: 100%;
   overflow: hidden;
+  text-align: justify;
 
   img {
     min-height: 12.5rem;
@@ -48,7 +48,6 @@ export const Info = styled.div`
   }
 
   p {
-    text-align: justify;
     font-size: 1rem;
     line-height: 1.75rem;
   }
@@ -56,6 +55,7 @@ export const Info = styled.div`
   li {
     font-size: 1rem;
     line-height: 2rem;
+    margin-left: 2rem;
   }
 
   @media screen and (max-width: 768px) {

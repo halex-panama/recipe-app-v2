@@ -43,13 +43,7 @@ const RecipeInfo = () => {
         </ButtonContainer>
 
         {activeTab === "Instruction" && (
-          <ol>
-            {state.analyzedInstructions &&
-              state.analyzedInstructions.length > 0 &&
-              state.analyzedInstructions[0].steps.map((step) => (
-                <li key={step.number}>{step.step}</li>
-              ))}
-          </ol>
+          <p dangerouslySetInnerHTML={{ __html: state.instructions }}></p>
         )}
 
         {activeTab === "Ingredients" && (
