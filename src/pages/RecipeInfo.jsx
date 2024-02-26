@@ -44,8 +44,8 @@ const RecipeInfo = () => {
 
         {activeTab === "Instruction" && (
           <ol>
-            {state.analyzedInstructions[0].steps &&
-              state.analyzedInstructions[0].steps.length > 0 &&
+            {state.analyzedInstructions &&
+              state.analyzedInstructions.length > 0 &&
               state.analyzedInstructions[0].steps.map((step) => (
                 <li key={step.number}>{step.step}</li>
               ))}

@@ -1,4 +1,4 @@
-const BASE_URL = "https://recipe-app-server-teal.vercel.app/";
+const BASE_URL = "https://recipe-app-server-teal.vercel.app";
 
 const apiSettings = {
   popularRecipes: async () => {
