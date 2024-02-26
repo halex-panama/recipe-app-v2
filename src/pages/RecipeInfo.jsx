@@ -43,13 +43,13 @@ const RecipeInfo = () => {
         </ButtonContainer>
 
         {activeTab === "Instruction" && (
-          <ul>
-            {state.analyzedInstructions &&
-              state.analyzedInstructions.length > 0 &&
+          <ol>
+            {state.analyzedInstructions[0].steps &&
+              state.analyzedInstructions[0].steps.length > 0 &&
               state.analyzedInstructions[0].steps.map((step) => (
                 <li key={step.number}>{step.step}</li>
               ))}
-          </ul>
+          </ol>
         )}
 
         {activeTab === "Ingredients" && (
