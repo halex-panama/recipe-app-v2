@@ -3,8 +3,8 @@ import styled from "styled-components";
 export const InfoWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 4rem;
-  margin: 5rem 0;
+  margin: 4rem 0;
+  gap: 1.5rem;
 
   .active {
     background: linear-gradient(35deg, #494949, #313131);
@@ -35,8 +35,8 @@ export const ButtonInfo = styled.button`
 export const Info = styled.div`
   gap: 1rem;
   display: flex;
-  align-items: center;
   flex-direction: column;
+  padding: 0 0.5rem;
 
   width: 100%;
   overflow: hidden;
@@ -44,7 +44,7 @@ export const Info = styled.div`
 
   img {
     min-height: 12.5rem;
-    border-radius: 1rem;
+    border-radius: 2rem;
   }
 
   p {
@@ -52,15 +52,19 @@ export const Info = styled.div`
     line-height: 1.75rem;
   }
 
+  ul,
+  ol {
+    list-style-position: inside;
+  }
+
   li {
     font-size: 1rem;
     line-height: 2rem;
-    margin-left: 2rem;
   }
 
   @media screen and (max-width: 768px) {
     img {
-      width: 18rem;
+      width: 100%;
     }
   }
 `;

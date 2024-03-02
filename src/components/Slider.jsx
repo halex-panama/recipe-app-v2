@@ -11,7 +11,7 @@ const Slider = ({ header, data }) => {
         <h3>{header}</h3>
         <Splide
           options={{
-            perPage: 4,
+            perPage: 3,
             arrows: true,
             pagination: false,
             drag: "free",
