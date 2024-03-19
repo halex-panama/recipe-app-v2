@@ -15,7 +15,8 @@ const Searched = () => {
   return (
     <div>
       <Grid>
-        {state && state.length > 0 ? (
+        {state &&
+          state.length > 0 &&
           state.map((item) => (
             <Card key={item.id}>
               <Link to={`/recipe/${item.id}`}>
@@ -24,10 +25,7 @@ const Searched = () => {
                 <Gradient />
               </Link>
             </Card>
-          ))
-        ) : (
-          <div>No data found</div>
-        )}
+          ))}
       </Grid>
     </div>
   );

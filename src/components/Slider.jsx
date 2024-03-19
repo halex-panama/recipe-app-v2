@@ -26,7 +26,8 @@ const Slider = ({ header, data }) => {
             },
           }}
         >
-          {data && data.length > 0 ? (
+          {data &&
+            data.length > 0 &&
             data.map((item) => (
               <SplideSlide key={item.id}>
                 <Card>
@@ -37,10 +38,7 @@ const Slider = ({ header, data }) => {
                   </Link>
                 </Card>
               </SplideSlide>
-            ))
-          ) : (
-            <div>No data found</div>
-          )}
+            ))}
         </Splide>
       </Wrapper>
     </>
