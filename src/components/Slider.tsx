@@ -2,9 +2,15 @@ import { Splide, SplideSlide } from "@splidejs/react-splide";
 import { Card, Gradient } from "../styles/Card";
 import { Wrapper } from "../styles/Slider";
 import { Link } from "react-router-dom";
+import { Recipe } from "../API";
 import "@splidejs/react-splide/css";
 
-const Slider = ({ header, data }) => {
+type Props = {
+  header: string;
+  data: Recipe[];
+};
+
+const Slider = ({ header, data }: Props) => {
   return (
     <>
       <Wrapper>

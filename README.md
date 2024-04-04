@@ -1,6 +1,6 @@
 # Recipe App
 
-This react-based project allows user to search food recipe powered by TMDB API.
+This react-based project allows user to search food recipe powered by spoonacular API.
 
 ## Tech Stack
 

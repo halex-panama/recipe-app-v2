@@ -14,7 +14,7 @@ const RecipeInfo = () => {
 
   const { recipeId } = useParams();
 
-  const { state, loading, error } = useRecipeFetch(recipeId);
+  const { state, loading, error } = useRecipeFetch(recipeId as string);
 
   if (loading) return <Spinner />;
   if (error) return <div>Something went wrong.. Please try again</div>;
@@ -24,7 +24,7 @@ const RecipeInfo = () => {
       <Info>
         <h2>{state.title}</h2>
         <img src={state.image} alt={state.title} />
-        <p dangerouslySetInnerHTML={{ __html: state.summary }}></p>
+        <p dangerouslySetInnerHTML={{ __html: state.summary as string }}></p>
       </Info>
       <Info>
         <ButtonContainer>
@@ -43,7 +43,9 @@ const RecipeInfo = () => {
         </ButtonContainer>
 
         {activeTab === "Instruction" && (
-          <p dangerouslySetInnerHTML={{ __html: state.instructions }}></p>
+          <p
+            dangerouslySetInnerHTML={{ __html: state.instructions as string }}
+          ></p>
         )}
 
         {activeTab === "Ingredients" && (

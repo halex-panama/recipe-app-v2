@@ -7,7 +7,7 @@ import Spinner from "../components/Spinner";
 const Cuisine = () => {
   const { cuisineName } = useParams();
 
-  const { state, loading, error } = useCuisineFetch(cuisineName);
+  const { state, loading, error } = useCuisineFetch(cuisineName as string);
 
   if (loading) return <Spinner />;
   if (error) return <div>Something went wrong.. Please try again</div>;
@@ -16,8 +16,8 @@ const Cuisine = () => {
     <div>
       <Grid>
         {state &&
-          state.length > 0 &&
-          state.map((item) => (
+          state.results &&
+          state.results.map((item) => (
             <Card key={item.id}>
               <Link to={`/recipe/${item.id}`}>
                 <p>{item.title}</p>

@@ -1,22 +1,22 @@
 import { useState, useEffect } from "react";
 
-import API from "../API";
+import API, { Recipe } from "../API";
 
 import { isPersistedState } from "../helpers";
 
-export const useCuisineFetch = (cuisineName) => {
-  const [state, setState] = useState([]);
+export const useRecipeFetch = (recipeId: string) => {
+  const [state, setState] = useState({} as Recipe);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
-  const fetchCuisine = async (cuisineName) => {
+  const fetchRecipeInfo = async (recipeId: string) => {
     try {
       setLoading(true);
       setError(false);
 
-      const cuisine = await API.cuisineRecipe(cuisineName);
+      const recipeInfo = await API.recipeInfo(recipeId);
 
-      setState(cuisine.results);
+      setState(recipeInfo);
 
       setLoading(false);
     } catch (error) {
@@ -26,7 +26,7 @@ export const useCuisineFetch = (cuisineName) => {
   };
 
   useEffect(() => {
-    const sessionState = isPersistedState(cuisineName);
+    const sessionState = isPersistedState(recipeId);
 
     if (sessionState && sessionState.length > 0) {
       setState(sessionState);
@@ -34,12 +34,12 @@ export const useCuisineFetch = (cuisineName) => {
       return;
     }
 
-    fetchCuisine(cuisineName);
-  }, [cuisineName]);
+    fetchRecipeInfo(recipeId);
+  }, [recipeId]);
 
   useEffect(() => {
-    sessionStorage.setItem(cuisineName, JSON.stringify(state));
-  }, [state, cuisineName]);
+    sessionStorage.setItem(recipeId, JSON.stringify(state));
+  }, [recipeId, state]);
 
   return { state, loading, error };
 };

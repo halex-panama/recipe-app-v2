@@ -7,7 +7,7 @@ import Spinner from "../components/Spinner";
 const Searched = () => {
   const { search } = useParams();
 
-  const { state, loading, error } = useSearchFetch(search);
+  const { state, loading, error } = useSearchFetch(search as string);
 
   if (loading) return <Spinner />;
   if (error) return <div>Something went wrong.. Please try again</div>;
@@ -16,8 +16,7 @@ const Searched = () => {
     <div>
       <Grid>
         {state &&
-          state.length > 0 &&
-          state.map((item) => (
+          state.results.map((item) => (
             <Card key={item.id}>
               <Link to={`/recipe/${item.id}`}>
                 <p>{item.title}</p>

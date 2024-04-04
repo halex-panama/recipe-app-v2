@@ -1,20 +1,27 @@
 import { useState, useEffect } from "react";
 
-import API from "../API";
+import API, { Recipe } from "../API";
 
-export const useSearchFetch = (searchTerm) => {
-  const [state, setState] = useState([]);
+const initialState = {
+  results: [] as Recipe[],
+  offset: 0,
+  number: 0,
+  totalResults: 0,
+};
+
+export const useSearchFetch = (searchTerm: string) => {
+  const [state, setState] = useState(initialState);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
-  const fetchSearchRecipe = async (searchTerm) => {
+  const fetchSearchRecipe = async (searchTerm: string) => {
     try {
       setLoading(true);
       setError(false);
 
       const searchedRecipe = await API.searchRecipe(searchTerm);
 
-      setState(searchedRecipe.results);
+      setState(searchedRecipe);
 
       setLoading(false);
     } catch (error) {

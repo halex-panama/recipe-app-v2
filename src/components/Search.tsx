@@ -7,7 +7,7 @@ const Search = () => {
   const [input, setInput] = useState("");
   const navigate = useNavigate();
 
-  const submitHandler = (e) => {
+  const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (input && input.length > 0) {
       navigate(`/searched/${input}`);

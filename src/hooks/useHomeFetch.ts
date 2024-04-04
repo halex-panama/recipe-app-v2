@@ -1,11 +1,16 @@
 import { useState, useEffect } from "react";
 
-import API from "../API";
+import API, { Recipe } from "../API";
 
 import { isPersistedState } from "../helpers";
 
+type RecipeState = {
+  popular: Recipe[];
+  veggie: Recipe[];
+};
+
 export const useHomeFetch = () => {
-  const [state, setState] = useState({});
+  const [state, setState] = useState<RecipeState>({} as RecipeState);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
@@ -37,7 +42,7 @@ export const useHomeFetch = () => {
       setLoading(false);
       return;
     }
-    setState({});
+    setState({} as RecipeState);
     fetchRecipe();
   }, []);
 
