@@ -2,8 +2,6 @@ import { useState, useEffect } from "react";
 
 import API, { Recipe } from "../API";
 
-import { isPersistedState } from "../helpers";
-
 const initialState = {
   results: [] as Recipe[],
   offset: 0,
@@ -21,9 +19,17 @@ export const useCuisineFetch = (cuisineName: string) => {
       setLoading(true);
       setError(false);
 
-      const cuisine = await API.cuisineRecipe(cuisineName);
+      const cuisineCheck = sessionStorage.getItem(cuisineName);
 
-      setState(cuisine);
+      if (cuisineCheck) {
+        setState(JSON.parse(cuisineCheck));
+      } else {
+        const cuisine = await API.cuisineRecipe(cuisineName);
+
+        sessionStorage.setItem(cuisineName, JSON.stringify(cuisine));
+
+        setState(cuisine);
+      }
 
       setLoading(false);
     } catch (error) {
@@ -33,20 +39,8 @@ export const useCuisineFetch = (cuisineName: string) => {
   };
 
   useEffect(() => {
-    const sessionState = isPersistedState(cuisineName);
-
-    if (sessionState && sessionState.length > 0) {
-      setState(sessionState);
-      setLoading(false);
-      return;
-    }
-
     fetchCuisine(cuisineName);
   }, [cuisineName]);
-
-  useEffect(() => {
-    sessionStorage.setItem(cuisineName, JSON.stringify(state));
-  }, [state, cuisineName]);
 
   return { state, loading, error };
 };

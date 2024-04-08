@@ -2,8 +2,6 @@ import { useState, useEffect } from "react";
 
 import API, { Recipe } from "../API";
 
-import { isPersistedState } from "../helpers";
-
 type RecipeState = {
   popular: Recipe[];
   veggie: Recipe[];
@@ -19,13 +17,27 @@ export const useHomeFetch = () => {
       setLoading(true);
       setError(false);
 
-      const popular = await API.popularRecipes();
-      const veggie = await API.veggieRecipes();
+      const homeCheck = sessionStorage.getItem("homeState");
 
-      setState({
-        popular: popular.recipes,
-        veggie: veggie.recipes,
-      });
+      if (homeCheck) {
+        setState(JSON.parse(homeCheck));
+      } else {
+        const popular = await API.popularRecipes();
+        const veggie = await API.veggieRecipes();
+
+        sessionStorage.setItem(
+          "homeState",
+          JSON.stringify({
+            popular: popular.recipes,
+            veggie: veggie.recipes,
+          })
+        );
+
+        setState({
+          popular: popular.recipes,
+          veggie: veggie.recipes,
+        });
+      }
 
       setLoading(false);
     } catch (error) {
@@ -35,20 +47,9 @@ export const useHomeFetch = () => {
   };
 
   useEffect(() => {
-    const sessionState = isPersistedState("home");
-
-    if (sessionState && sessionState.length > 0) {
-      setState(sessionState);
-      setLoading(false);
-      return;
-    }
-    setState({} as RecipeState);
+    // setState({} as RecipeState);
     fetchRecipe();
   }, []);
-
-  useEffect(() => {
-    sessionStorage.setItem("home", JSON.stringify(state));
-  }, [state]);
 
   return { state, loading, error };
 };

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
 export const InfoWrapper = styled.div`
   display: grid;
@@ -23,7 +24,7 @@ export const ButtonContainer = styled.div`
   gap: 1rem;
 `;
 
-export const ButtonInfo = styled.button`
+export const ButtonInfo = styled(motion.button)`
   padding: 1rem 2rem;
   color: #313131;
   background: #fff;
@@ -32,7 +33,7 @@ export const ButtonInfo = styled.button`
   cursor: pointer;
 `;
 
-export const Info = styled.div`
+export const Info = styled(motion.div)`
   gap: 1rem;
   display: flex;
   flex-direction: column;

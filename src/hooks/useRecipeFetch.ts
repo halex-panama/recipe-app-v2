@@ -2,8 +2,6 @@ import { useState, useEffect } from "react";
 
 import API, { Recipe } from "../API";
 
-import { isPersistedState } from "../helpers";
-
 export const useRecipeFetch = (recipeId: string) => {
   const [state, setState] = useState({} as Recipe);
   const [loading, setLoading] = useState(false);
@@ -14,9 +12,17 @@ export const useRecipeFetch = (recipeId: string) => {
       setLoading(true);
       setError(false);
 
-      const recipeInfo = await API.recipeInfo(recipeId);
+      const recipeInfoCheck = sessionStorage.getItem(recipeId);
 
-      setState(recipeInfo);
+      if (recipeInfoCheck) {
+        setState(JSON.parse(recipeInfoCheck));
+      } else {
+        const recipeInfo = await API.recipeInfo(recipeId);
+
+        sessionStorage.setItem(recipeId, JSON.stringify(recipeInfo));
+
+        setState(recipeInfo);
+      }
 
       setLoading(false);
     } catch (error) {
@@ -26,20 +32,8 @@ export const useRecipeFetch = (recipeId: string) => {
   };
 
   useEffect(() => {
-    const sessionState = isPersistedState(recipeId);
-
-    if (sessionState && sessionState.length > 0) {
-      setState(sessionState);
-      setLoading(false);
-      return;
-    }
-
     fetchRecipeInfo(recipeId);
   }, [recipeId]);
-
-  useEffect(() => {
-    sessionStorage.setItem(recipeId, JSON.stringify(state));
-  }, [recipeId, state]);
 
   return { state, loading, error };
 };
