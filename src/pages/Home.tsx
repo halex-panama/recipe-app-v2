@@ -1,6 +1,5 @@
 import { useHomeFetch } from "../hooks/useHomeFetch";
 import { Grid } from "../styles/Grid";
-import { Link } from "react-router-dom";
 import Spinner from "../components/Spinner";
 import RecipeCard from "../components/RecipeCard";
 
