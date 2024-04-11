@@ -1,9 +1,8 @@
 import { useHomeFetch } from "../hooks/useHomeFetch";
 import { Grid } from "../styles/Grid";
-import { Card, CardImg } from "../styles/Card";
 import { Link } from "react-router-dom";
-import { fadeInCardVariant } from "../helpers";
 import Spinner from "../components/Spinner";
+import RecipeCard from "../components/RecipeCard";
 
 const Home = () => {
   const { state, loading, error } = useHomeFetch();
@@ -18,22 +17,12 @@ const Home = () => {
         {state &&
           state.popular &&
           state.popular.map((item, index) => (
-            <Card
-              initial="initial"
-              whileInView="animate"
-              variants={fadeInCardVariant}
-              custom={index}
-              key={item.id}
-            >
-              <Link to={`/recipe/${item.id}`}>
-                <CardImg
-                  whileHover={{ scale: 1.1 }}
-                  src={item.image}
-                  alt={item.title}
-                />
-                <p>{item.title}</p>
-              </Link>
-            </Card>
+            <RecipeCard
+              id={item.id}
+              image={item.image}
+              title={item.title}
+              index={index}
+            />
           ))}
       </Grid>
       <h1>Vegetarian Recipe</h1>
@@ -41,22 +30,12 @@ const Home = () => {
         {state &&
           state.veggie &&
           state.veggie.map((item, index) => (
-            <Card
-              initial="initial"
-              whileInView="animate"
-              variants={fadeInCardVariant}
-              custom={index}
-              key={item.id}
-            >
-              <Link to={`/recipe/${item.id}`}>
-                <CardImg
-                  whileHover={{ scale: 1.1 }}
-                  src={item.image}
-                  alt={item.title}
-                />
-                <p>{item.title}</p>
-              </Link>
-            </Card>
+            <RecipeCard
+              id={item.id}
+              image={item.image}
+              title={item.title}
+              index={index}
+            />
           ))}
       </Grid>
     </>

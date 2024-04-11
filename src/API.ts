@@ -31,15 +31,24 @@ const apiSettings = {
     return await (await fetch(endpoint)).json();
   },
   veggieRecipes: async (): Promise<Recipes> => {
-    const endpoint = `${BASE_URL}/veggie`;
+    const veggieParams = new URLSearchParams({
+      "include-tags": "vegetarian",
+    });
+    const endpoint = `${BASE_URL}/popular?${veggieParams.toString()}`;
     return await (await fetch(endpoint)).json();
   },
   cuisineRecipe: async (cuisineName: string): Promise<SearcrhedRecipes> => {
-    const endpoint = `${BASE_URL}/search?cuisine=${cuisineName}`;
+    const cuisineParams = new URLSearchParams({
+      cuisine: cuisineName,
+    });
+    const endpoint = `${BASE_URL}/search?${cuisineParams.toString()}`;
     return await (await fetch(endpoint)).json();
   },
   searchRecipe: async (searchTerm: string): Promise<SearcrhedRecipes> => {
-    const endpoint = `${BASE_URL}/search?query=${searchTerm}`;
+    const searchParams = new URLSearchParams({
+      query: searchTerm,
+    });
+    const endpoint = `${BASE_URL}/search?${searchParams}`;
     return await (await fetch(endpoint)).json();
   },
   recipeInfo: async (recipeId: string): Promise<Recipe> => {

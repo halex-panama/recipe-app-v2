@@ -3,18 +3,15 @@ import styled from "styled-components";
 
 export const Card = styled(motion.div)`
   border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
 
   p {
+    text-decoration: none;
     color: #000;
     text-align: center;
     font-size: 1.25rem;
-  }
-
-  a {
-    text-decoration: none;
-    display: flex;
-    gap: 1rem;
-    flex-direction: column;
   }
 `;
 

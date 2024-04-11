@@ -1,9 +1,8 @@
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useSearchFetch } from "../hooks/useSearchFetch";
 import { Grid } from "../styles/Grid";
-import { Card, CardImg } from "../styles/Card";
 import Spinner from "../components/Spinner";
-import { fadeInCardVariant } from "../helpers";
+import RecipeCard from "../components/RecipeCard";
 
 const Searched = () => {
   const { search } = useParams();
@@ -18,23 +17,14 @@ const Searched = () => {
       <h1>Search result for: {search}</h1>
       <Grid>
         {state &&
+          state.results &&
           state.results.map((item, index) => (
-            <Card
-              initial="initial"
-              whileInView="animate"
-              variants={fadeInCardVariant}
-              custom={index}
-              key={item.id}
-            >
-              <Link to={`/recipe/${item.id}`}>
-                <CardImg
-                  whileHover={{ scale: 1.1 }}
-                  src={item.image}
-                  alt={item.title}
-                />
-                <p>{item.title}</p>
-              </Link>
-            </Card>
+            <RecipeCard
+              id={item.id}
+              image={item.image}
+              title={item.title}
+              index={index}
+            />
           ))}
       </Grid>
     </>

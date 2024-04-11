@@ -5,4 +5,8 @@ export const Grid = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 2rem;
   margin: 2rem 0;
+
+  a {
+    text-decoration: none;
+  }
 `;
