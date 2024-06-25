@@ -1,11 +1,11 @@
 export const fadeInCardVariant = {
   initial: {
     opacity: 0,
-    y: 50,
+    scale: 0.9,
   },
   animate: (id: number) => ({
     opacity: 1,
-    y: 0,
+    scale: 1,
     transition: {
       delay: 0.05 * id,
     },

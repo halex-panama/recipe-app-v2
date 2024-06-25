@@ -11,12 +11,16 @@ export const Card = styled(motion.div)`
     text-decoration: none;
     color: #000;
     text-align: center;
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
 `;
 
 export const CardImg = styled(motion.img)`
   border-radius: 1rem;
   max-width: 100%;
-  height: auto;
+  height: 10rem;
+
+  @media screen and (max-width: 768px) {
+    height: 15rem;
+  }
 `;

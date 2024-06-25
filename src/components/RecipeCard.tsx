@@ -18,7 +18,12 @@ const RecipeCard = ({ image, title, index, id }: Props) => {
         variants={fadeInCardVariant}
         custom={index}
       >
-        <CardImg whileHover={{ scale: 1.05 }} alt={image} src={image} />
+        <CardImg
+          whileHover={{ scale: 1.025 }}
+          alt={image}
+          src={image}
+          loading="lazy"
+        />
         <p>{title}</p>
       </Card>
     </Link>
