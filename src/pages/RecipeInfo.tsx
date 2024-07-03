@@ -5,6 +5,7 @@ import {
   Info,
   InfoWrapper,
   ButtonContainer,
+  Skeleton,
 } from "../styles/RecipeInfo";
 import { useState } from "react";
 import Spinner from "../components/Spinner";
@@ -17,6 +18,7 @@ import { motion } from "framer-motion";
 
 const RecipeInfo = () => {
   const [activeTab, setActiveTab] = useState("Instruction");
+  const [loadingImage, setLoadingImage] = useState(true);
 
   const { recipeId } = useParams();
 
@@ -29,7 +31,13 @@ const RecipeInfo = () => {
     <InfoWrapper>
       <Info initial="hidden" whileInView="visible" variants={fadeInLeftVariant}>
         <h2>{state.title}</h2>
-        <img src={state.image} alt={state.title} />
+        {loadingImage && <Skeleton />}
+        <img
+          src={state.image}
+          alt={state.title}
+          loading="lazy"
+          onLoad={() => setLoadingImage(false)}
+        />
         <p dangerouslySetInnerHTML={{ __html: state.summary as string }}></p>
       </Info>
       <Info

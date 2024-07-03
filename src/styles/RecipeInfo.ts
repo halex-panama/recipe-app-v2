@@ -33,6 +33,31 @@ export const ButtonInfo = styled(motion.button)`
   cursor: pointer;
 `;
 
+export const Skeleton = styled.div`
+  animation: skeleton-loading 1s linear infinite alternate;
+  border-radius: 2rem;
+  min-height: 12.5rem;
+  height: 21.5rem;
+  position: absolute;
+  top: 7%;
+  width: 100%;
+
+  @media screen and (max-width: 768px) {
+    top: 7%;
+    min-height: 10rem;
+    height: 12.5rem;
+  }
+
+  @keyframes skeleton-loading {
+    0% {
+      background-color: hsl(200, 20%, 80%);
+    }
+    100% {
+      background-color: hsl(200, 20%, 95%);
+    }
+  }
+`;
+
 export const Info = styled(motion.div)`
   gap: 1rem;
   display: flex;
@@ -42,6 +67,8 @@ export const Info = styled(motion.div)`
   width: 100%;
   overflow: hidden;
   text-align: justify;
+
+  position: relative;
 
   img {
     min-height: 12.5rem;
