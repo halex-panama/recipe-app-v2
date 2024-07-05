@@ -27,6 +27,7 @@ const RecipeCard = ({ image, title, index, id }: Props) => {
           src={image}
           loading="lazy"
           onLoad={() => setLoadingImage(false)}
+          onError={() => setLoadingImage(false)}
         />
         <p>{title}</p>
       </Card>

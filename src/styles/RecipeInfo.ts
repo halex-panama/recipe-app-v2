@@ -36,16 +36,14 @@ export const ButtonInfo = styled(motion.button)`
 export const Skeleton = styled.div`
   animation: skeleton-loading 1s linear infinite alternate;
   border-radius: 2rem;
-  min-height: 12.5rem;
-  height: 21.5rem;
+  height: 20rem;
   position: absolute;
   top: 7%;
   width: 100%;
 
-  @media screen and (max-width: 768px) {
-    top: 7%;
-    min-height: 10rem;
-    height: 12.5rem;
+  @media screen and (max-width: 640px) {
+    top: 9%;
+    height: 17rem;
   }
 
   @keyframes skeleton-loading {
@@ -62,6 +60,7 @@ export const Info = styled(motion.div)`
   gap: 1rem;
   display: flex;
   flex-direction: column;
+  gap: 2rem;
   padding: 0 0.5rem;
 
   width: 100%;
@@ -71,7 +70,7 @@ export const Info = styled(motion.div)`
   position: relative;
 
   img {
-    min-height: 12.5rem;
+    min-height: 20rem;
     border-radius: 2rem;
   }
 

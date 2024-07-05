@@ -7,10 +7,6 @@ export const Card = styled(motion.div)`
   height: auto;
   min-height: 12.5rem;
 
-  @media screen and (max-width: 768px) {
-    height: 15rem;
-  }
-
   p {
     text-decoration: none;
     color: #000;
