@@ -33,4 +33,4 @@ Start the project on your local machine
 
 ## Screenshots
 
-![App Screenshot](https://i.ibb.co/wynnNjp/Recipe-app-thumb.png)
+![App Screenshot](https://i.ibb.co/fHbmqj9/Recipe-App.png)

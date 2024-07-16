@@ -5,7 +5,7 @@ import {
   Info,
   InfoWrapper,
   ButtonContainer,
-  Skeleton,
+  ImageContainer,
 } from "../styles/RecipeInfo";
 import { useState } from "react";
 import Spinner from "../components/Spinner";
@@ -15,14 +15,17 @@ import {
   fadeInRightVariant,
 } from "../helpers";
 import { motion } from "framer-motion";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const RecipeInfo = () => {
   const [activeTab, setActiveTab] = useState("Instruction");
-  const [loadingImage, setLoadingImage] = useState(true);
 
   const { recipeId } = useParams();
 
   const { state, loading, error } = useRecipeFetch(recipeId as string);
+
+  const [isLoaded, setIsLoaded] = useState(false);
 
   if (loading) return <Spinner />;
   if (error) return <div>Something went wrong.. Please try again</div>;
@@ -31,19 +34,23 @@ const RecipeInfo = () => {
     <InfoWrapper>
       <Info initial="hidden" whileInView="visible" variants={fadeInLeftVariant}>
         <h2>{state.title}</h2>
-        {loadingImage && <Skeleton />}
-        <img
-          src={state.image}
-          alt={state.title}
-          loading="lazy"
-          onLoad={() => setLoadingImage(false)}
-        />
+        <ImageContainer isLoaded={isLoaded}>
+          <LazyLoadImage
+            src={state.image}
+            width={"100%"}
+            height={"100%"}
+            effect="blur"
+            onLoad={() => setIsLoaded(true)}
+          />
+        </ImageContainer>
+
         <p dangerouslySetInnerHTML={{ __html: state.summary as string }}></p>
       </Info>
       <Info
         initial="hidden"
         whileInView="visible"
         variants={fadeInRightVariant}
+        viewport={{ once: true }}
       >
         <ButtonContainer>
           <ButtonInfo
@@ -69,6 +76,7 @@ const RecipeInfo = () => {
             initial="hidden"
             whileInView="visible"
             variants={fadeInRightVariant}
+            viewport={{ once: true }}
             dangerouslySetInnerHTML={{ __html: state.instructions as string }}
           ></motion.p>
         )}
@@ -83,6 +91,7 @@ const RecipeInfo = () => {
                   initial="initial"
                   whileInView="animate"
                   variants={fadeInIngredientsVariant}
+                  viewport={{ once: true }}
                   key={item.id}
                 >
                   {item.original}

@@ -1,12 +1,11 @@
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
-export const Card = styled(motion.div)`
-  border-radius: 1rem;
-  position: relative;
-  height: auto;
-  min-height: 12.5rem;
+type Props = {
+  isLoaded: boolean;
+};
 
+export const Card = styled(motion.div)`
   p {
     text-decoration: none;
     color: #000;
@@ -16,30 +15,30 @@ export const Card = styled(motion.div)`
   }
 `;
 
-export const Skeleton = styled.div`
-  border-radius: 1rem;
-  height: 11rem;
-  position: absolute;
-  top: 0;
-  width: 100%;
+export const ImageContainer = styled.div<Props>`
+  overflow: hidden;
+  min-height: 150px;
+  border-radius: 0.5rem;
 
-  @media screen and (max-width: 768px) {
-    height: 12.5rem;
-  }
-
-  animation: skeleton-loading 1s linear infinite alternate;
+  animation: ${({ isLoaded }) =>
+    isLoaded ? "none" : "skeleton-loading 1s linear infinite alternate"};
 
   @keyframes skeleton-loading {
     0% {
-      background-color: hsl(200, 20%, 80%);
+      background-color: ${({ isLoaded }) =>
+        isLoaded ? "none" : "hsl(200, 20%, 80%)"};
     }
     100% {
-      background-color: hsl(200, 20%, 95%);
+      background-color: ${({ isLoaded }) =>
+        isLoaded ? "none" : "hsl(200, 20%, 95%)"};
     }
   }
-`;
 
-export const CardImg = styled(motion.img)`
-  border-radius: 1rem;
-  width: 100%;
+  @media screen and (max-width: 694px) {
+    min-height: 200px;
+  }
+
+  .lazy-img {
+    border-radius: 0.5rem;
+  }
 `;

@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { fadeInCardVariant } from "../helpers";
-import { Card, CardImg, Skeleton } from "../styles/Card";
+import { Card, ImageContainer } from "../styles/Card";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 import { useState } from "react";
 
 type Props = {
@@ -11,24 +13,26 @@ type Props = {
 };
 
 const RecipeCard = ({ image, title, index, id }: Props) => {
-  const [loadingImage, setLoadingImage] = useState(true);
+  const [isLoaded, setIsLoaded] = useState(false);
   return (
     <Link to={`/recipe/${id}`}>
       <Card
         initial="initial"
         whileInView="animate"
         variants={fadeInCardVariant}
+        viewport={{ once: true }}
         custom={index}
       >
-        {loadingImage && <Skeleton />}
-        <CardImg
-          whileHover={{ scale: 1.025 }}
-          alt={image}
-          src={image}
-          loading="lazy"
-          onLoad={() => setLoadingImage(false)}
-          onError={() => setLoadingImage(false)}
-        />
+        <ImageContainer isLoaded={isLoaded}>
+          <LazyLoadImage
+            src={image}
+            width={"100%"}
+            height={"100%"}
+            className="lazy-img"
+            effect="blur"
+            onLoad={() => setIsLoaded(true)}
+          />
+        </ImageContainer>
         <p>{title}</p>
       </Card>
     </Link>

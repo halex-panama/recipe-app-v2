@@ -1,6 +1,10 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
+type Props = {
+  isLoaded: boolean;
+};
+
 export const InfoWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -12,7 +16,7 @@ export const InfoWrapper = styled.div`
     color: #fff;
   }
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 740px) {
     grid-template-columns: 1fr;
   }
 `;
@@ -31,33 +35,13 @@ export const ButtonInfo = styled(motion.button)`
   border: 2px solid #000;
   font-weight: 600;
   cursor: pointer;
-`;
 
-export const Skeleton = styled.div`
-  animation: skeleton-loading 1s linear infinite alternate;
-  border-radius: 2rem;
-  height: 20rem;
-  position: absolute;
-  top: 7%;
-  width: 100%;
-
-  @media screen and (max-width: 640px) {
-    top: 9%;
-    height: 17rem;
-  }
-
-  @keyframes skeleton-loading {
-    0% {
-      background-color: hsl(200, 20%, 80%);
-    }
-    100% {
-      background-color: hsl(200, 20%, 95%);
-    }
+  @media screen and (max-width: 325px) {
+    padding: 1rem 1.5rem;
   }
 `;
 
 export const Info = styled(motion.div)`
-  gap: 1rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -67,13 +51,6 @@ export const Info = styled(motion.div)`
   overflow: hidden;
   text-align: justify;
 
-  position: relative;
-
-  img {
-    min-height: 20rem;
-    border-radius: 2rem;
-  }
-
   p {
     font-size: 1rem;
     line-height: 1.75rem;
@@ -82,16 +59,35 @@ export const Info = styled(motion.div)`
   ul,
   ol {
     list-style-position: inside;
+    padding: 0 10px;
   }
 
   li {
     font-size: 1rem;
     line-height: 2rem;
   }
+`;
 
-  @media screen and (max-width: 768px) {
-    img {
-      width: 100%;
+export const ImageContainer = styled.div<Props>`
+  border-radius: 1rem;
+  overflow: hidden;
+  min-height: 300px;
+
+  @media screen and (max-width: 425px) {
+    min-height: 200px;
+  }
+
+  animation: ${({ isLoaded }) =>
+    isLoaded ? "none" : "skeleton-loading 1s linear infinite alternate"};
+
+  @keyframes skeleton-loading {
+    0% {
+      background-color: ${({ isLoaded }) =>
+        isLoaded ? "none" : "hsl(200, 20%, 80%)"};
+    }
+    100% {
+      background-color: ${({ isLoaded }) =>
+        isLoaded ? "none" : "hsl(200, 20%, 95%)"};
     }
   }
 `;
